@@ -1,4 +1,4 @@
-package com.example.RecipesAPI.cook;
+package com.example.RecipesAPI.chefs;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CookRepository extends JpaRepository<Cook, Long> {
+public interface ChefsRepository extends JpaRepository<Chefs, Long> {
 
-    Optional<Cook> findByEmail(String email);
+    Optional<Chefs> findByEmail(String email);
 }

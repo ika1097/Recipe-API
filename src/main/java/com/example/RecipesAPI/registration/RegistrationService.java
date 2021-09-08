@@ -1,8 +1,8 @@
 package com.example.RecipesAPI.registration;
 
-import com.example.RecipesAPI.cook.Cook;
-import com.example.RecipesAPI.cook.CookService;
-import com.example.RecipesAPI.cook.UserRole;
+import com.example.RecipesAPI.chefs.Chefs;
+import com.example.RecipesAPI.chefs.ChefsService;
+import com.example.RecipesAPI.chefs.UserRole;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RegistrationService {
 
-    private final CookService cookService;
+    private final ChefsService chefsService;
 
     public String register(RegistrationRequest request) {
-        return cookService.signUpCook(
-                new Cook(
+        return chefsService.signUpCook(
+                new Chefs(
                         request.getFirstName(),
                         request.getLastName(),
                         request.getEmail(),

@@ -1,4 +1,4 @@
-package com.example.RecipesAPI.cook;
+package com.example.RecipesAPI.chefs;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,8 +13,8 @@ import java.util.Collections;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "cook")
-public class Cook implements UserDetails {
+@Table(name = "chefs")
+public class Chefs implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -39,7 +39,7 @@ public class Cook implements UserDetails {
     private Boolean locked = false;
     private Boolean enabled = true;
 
-    public Cook(String fullName, String username, String email, String password, UserRole role) {
+    public Chefs(String fullName, String username, String email, String password, UserRole role) {
         this.firstName = fullName;
         this.lastName = username;
         this.email = email;

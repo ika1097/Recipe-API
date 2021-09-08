@@ -1,6 +1,6 @@
 package com.example.RecipesAPI.security.config;
 
-import com.example.RecipesAPI.cook.CookService;
+import com.example.RecipesAPI.chefs.ChefsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 
-    private final CookService cookService;
+    private final ChefsService chefsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
@@ -43,7 +43,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(cookService);
+        provider.setUserDetailsService(chefsService);
         return provider;
     }
 }

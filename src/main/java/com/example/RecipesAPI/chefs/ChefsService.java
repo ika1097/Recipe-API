@@ -1,4 +1,4 @@
-package com.example.RecipesAPI.cook;
+package com.example.RecipesAPI.chefs;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,31 +11,31 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @AllArgsConstructor
-public class CookService implements UserDetailsService {
+public class ChefsService implements UserDetailsService {
 
-    private final CookRepository cookRepository;
+    private final ChefsRepository chefsRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return cookRepository.findByEmail(email)
+        return chefsRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Email: %s not found", email)));
     }
 
-    public String signUpCook(Cook cook) throws ResponseStatusException {
-        boolean cookExist = cookRepository
-                .findByEmail(cook.getEmail())
+    public String signUpCook(Chefs chefs) throws ResponseStatusException {
+        boolean cookExist = chefsRepository
+                .findByEmail(chefs.getEmail())
                 .isPresent();
 
         if (cookExist) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email already taken");
         }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(cook.getPassword());
+        String encodedPassword = bCryptPasswordEncoder.encode(chefs.getPassword());
 
-        cook.setPassword(encodedPassword);
+        chefs.setPassword(encodedPassword);
 
-        cookRepository.save(cook);
+        chefsRepository.save(chefs);
 
         return "Successful registration";
     }
